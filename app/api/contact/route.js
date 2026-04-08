@@ -472,7 +472,7 @@ export async function POST(req) {
          from: `"${process.env.ALIAS_NAME || 'ClickMasters'}" <${process.env.ALIAS_EMAIL || process.env.SMTP_MAIL}>`,
          to: process.env.RECEIVER_EMAIL || process.env.SMTP_MAIL,
          replyTo: email,
-         subject: `📬 New Contact Form Submission from ${name}`,
+         subject: `📬 New Contact Form Submission - Mobile POS | ${name}`,
          html: adminEmailHtml(name, email, message, additionalInfo),
          // Add plain text alternative for better email client compatibility
          text: `New Contact Submission\n\nName: ${name}\nEmail: ${email}\n${phone ? `Phone: ${phone}\n` : ''}${company ? `Company: ${company}\n` : ''}${services ? `Services: ${services}\n` : ''}${budget ? `Budget: ${budget}\n` : ''}\nMessage:\n${message}`,
