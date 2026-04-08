@@ -428,7 +428,7 @@ export default function ScrollAnimation({
           {/* Progress Bar */}
           <div className="mb-4 h-1 w-64 overflow-hidden rounded-full bg-zinc-800">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-300 ease-out"
+              className="h-full rounded-full bg-linear-to-r from-cyan-500 to-blue-500 transition-all duration-300 ease-out"
               style={{ width: `${loadingState.percentage}%` }}
             />
           </div>
@@ -533,8 +533,8 @@ export default function ScrollAnimation({
           className="pointer-events-none absolute inset-0 z-30 will-change-transform"
         >
           {/* Decorative gradient overlays */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-zinc-950/50 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-950/50 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-32 bg-linear-to-b from-zinc-950/50 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-zinc-950/50 to-transparent" />
 
           {/* Corner accents */}
           <div className="absolute top-8 left-8 h-16 w-16 border-l-2 border-t-2 border-cyan-500/30" />
@@ -546,7 +546,7 @@ export default function ScrollAnimation({
         {/* Scroll Progress Indicator */}
         <div className="absolute bottom-8 left-1/2 z-40 -translate-x-1/2">
           <div className="flex flex-col items-center gap-2">
-            <div className="h-12 w-px bg-gradient-to-b from-transparent via-zinc-500 to-zinc-500" />
+            <div className="h-12 w-px bg-linear-to-b from-transparent via-zinc-500 to-zinc-500" />
             <span className="font-mono text-xs uppercase tracking-widest text-zinc-500">
               Scroll
             </span>
