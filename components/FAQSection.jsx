@@ -5,6 +5,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BackgroundDecoration from './BackgroundDecoration';
 import Icon from './Icons';
+import { Card, CardContent } from '@/components/ui/card';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
@@ -57,12 +60,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
           { height: 'auto', opacity: 1, duration: 0.4, ease: 'power2.out' }
         );
       } else if (contentRef.current) {
-        gsap.to(contentRef.current, {
-          height: 0,
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power2.in',
-        });
+        gsap.to(contentRef.current, { height: 0, opacity: 0, duration: 0.3, ease: 'power2.in' });
       }
     }, itemRef);
 
@@ -70,28 +68,34 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
   }, [isOpen]);
 
   return (
-    <div
+    <Card
       ref={itemRef}
-      className="border border-bg-accent rounded-xl overflow-hidden mb-4 hover:border-amber/50 transition-colors bg-surface glow-card"
+      className="overflow-hidden mb-4 hover:border-amber/50 transition-colors glow-card border-0"
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-6 text-left bg-surface hover:bg-surface-hover transition-colors"
+        className="w-full flex items-center justify-between p-6 text-left bg-card hover:bg-accent/50 transition-colors"
         aria-expanded={isOpen}
       >
-        <span className="text-lg font-semibold text-text-primary pr-4 text-left">
+        <span className="text-lg font-semibold text-card-foreground pr-4 text-left">
           {faq.question}
         </span>
         <div className={`w-6 h-6 text-amber flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
           <Icon name="chevronDown" />
         </div>
       </button>
-      <div ref={contentRef} className="hidden">
-        <div className="p-6 pt-0 text-text-secondary leading-relaxed">
-          {faq.answer}
-        </div>
+      <div
+        ref={contentRef}
+        className="overflow-hidden"
+        style={{ height: isOpen ? 'auto' : 0 }}
+      >
+        <CardContent className="pt-4 pb-6">
+          <p className="text-muted-foreground leading-relaxed">
+            {faq.answer}
+          </p>
+        </CardContent>
       </div>
-    </div>
+    </Card>
   );
 }
 
@@ -103,21 +107,8 @@ export default function FAQSection() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.faq-item',
-        {
-          opacity: 0,
-          y: 30,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-          },
-        }
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } }
       );
     }, sectionRef);
 
@@ -130,11 +121,9 @@ export default function FAQSection() {
 
   return (
     <section id="faq" ref={sectionRef} className="relative py-32 px-4 bg-section-gradient overflow-hidden">
-      {/* Background Decoration */}
       <BackgroundDecoration dots grid gradients variant="cool" opacity={0.4} />
 
       <div className="relative z-10 max-w-4xl mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-amber/10 text-amber-dark rounded-full text-sm font-semibold uppercase tracking-widest mb-4">
             FAQ
@@ -148,7 +137,6 @@ export default function FAQSection() {
           </p>
         </div>
 
-        {/* FAQ Items */}
         <div>
           {faqs.map((faq, index) => (
             <div key={index} className="faq-item">

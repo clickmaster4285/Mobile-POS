@@ -5,6 +5,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BackgroundDecoration from './BackgroundDecoration';
 import Icon from './Icons';
+import { Card, CardContent } from '@/components/ui/card';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -46,21 +49,8 @@ export default function ReviewsSection() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         carouselRef.current.children,
-        {
-          opacity: 0,
-          scale: 0.9,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-          },
-        }
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } }
       );
     }, sectionRef);
 
@@ -84,11 +74,9 @@ export default function ReviewsSection() {
       ref={sectionRef}
       className="relative py-32 px-4 bg-bg-primary overflow-hidden"
     >
-      {/* Background Decoration */}
       <BackgroundDecoration dots gradients variant="warm" opacity={0.4} />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-20">
           <span className="inline-block px-4 py-1.5 bg-amber/10 text-amber-dark rounded-full text-sm font-semibold uppercase tracking-widest mb-4">
             Testimonials
@@ -102,46 +90,43 @@ export default function ReviewsSection() {
           </p>
         </div>
 
-        {/* Testimonial Carousel */}
         <div ref={carouselRef} className="relative">
           <div className="min-h-[300px] flex items-center justify-center">
-            <div className="text-center max-w-3xl mx-auto p-10 bg-surface rounded-2xl border border-bg-accent glow-card relative">
+            <Card className="text-center max-w-3xl mx-auto p-10 glow-card border-0 relative">
               {/* Quote Mark */}
               <div className="absolute -top-4 left-8 text-6xl text-amber/20 font-serif leading-none">"</div>
 
               {/* Stars */}
               <div className="flex justify-center gap-1 mb-6">
-                {Array.from({ length: testimonials[currentIndex].rating }).map(
-                  (_, i) => (
-                    <div key={i} className="w-7 h-7 text-amber">
-                      <Icon name="star" />
-                    </div>
-                  )
-                )}
+                {Array.from({ length: testimonials[currentIndex].rating }).map((_, i) => (
+                  <div key={i} className="w-7 h-7 text-amber">
+                    <Icon name="star" />
+                  </div>
+                ))}
               </div>
 
               {/* Quote */}
-              <blockquote className="text-xl md:text-2xl text-text-primary leading-relaxed mb-8 italic">
+              <blockquote className="text-xl md:text-2xl text-card-foreground leading-relaxed mb-8 italic">
                 "{testimonials[currentIndex].content}"
               </blockquote>
 
               {/* Author */}
               <div>
-                <div className="text-lg font-semibold text-text-primary">
+                <div className="text-lg font-semibold text-card-foreground">
                   {testimonials[currentIndex].name}
                 </div>
-                <div className="text-text-secondary">
+                <div className="text-muted-foreground">
                   {testimonials[currentIndex].role}
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
 
           {/* Navigation */}
           <div className="flex items-center justify-center gap-4 mt-12">
             <button
               onClick={goPrev}
-              className="p-3 rounded-full bg-surface border border-bg-accent hover:border-amber/50 transition-all shadow-sm hover:shadow-md"
+              className="p-3 rounded-full bg-card hover:border-amber/50 transition-all shadow-sm hover:shadow-md border border-border/50"
               aria-label="Previous testimonial"
             >
               <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -155,9 +140,7 @@ export default function ReviewsSection() {
                   key={index}
                   onClick={() => goTo(index)}
                   className={`h-3 rounded-full transition-all ${
-                    index === currentIndex
-                      ? 'bg-amber w-8'
-                      : 'bg-bg-accent hover:bg-text-muted w-3'
+                    index === currentIndex ? 'bg-amber w-8' : 'bg-muted w-3 hover:bg-muted-foreground/50'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
@@ -166,7 +149,7 @@ export default function ReviewsSection() {
 
             <button
               onClick={goNext}
-              className="p-3 rounded-full bg-surface border border-bg-accent hover:border-amber/50 transition-all shadow-sm hover:shadow-md"
+              className="p-3 rounded-full bg-card hover:border-amber/50 transition-all shadow-sm hover:shadow-md border border-border/50"
               aria-label="Next testimonial"
             >
               <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">

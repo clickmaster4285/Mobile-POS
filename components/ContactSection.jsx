@@ -5,19 +5,17 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BackgroundDecoration from './BackgroundDecoration';
 import Icon from './Icons';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactSection() {
   const sectionRef = useRef(null);
   const formRef = useRef(null);
   const infoRef = useRef(null);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
@@ -25,21 +23,8 @@ export default function ContactSection() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         [formRef.current, infoRef.current],
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-          },
-        }
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } }
       );
     }, sectionRef);
 
@@ -47,16 +32,12 @@ export default function ContactSection() {
   }, []);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setSubmitStatus('success');
@@ -74,11 +55,9 @@ export default function ContactSection() {
       ref={sectionRef}
       className="relative py-32 px-4 bg-bg-primary overflow-hidden"
     >
-      {/* Background Decoration */}
       <BackgroundDecoration dots gradients variant="warm" opacity={0.5} />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-amber/10 text-amber-dark rounded-full text-sm font-semibold uppercase tracking-widest mb-4">
             Contact Us
@@ -94,120 +73,99 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div ref={formRef} className="bg-surface p-8 rounded-2xl border border-bg-accent glow-card">
-            <h3 className="text-2xl font-bold text-text-primary mb-6">
-              Send Us a Message
-            </h3>
+          <Card ref={formRef} className="glow-card border-0">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-2xl font-bold text-card-foreground">
+                Send Us a Message
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text" id="name" name="name" value={formData.name}
+                    onChange={handleChange} required
+                    className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg text-card-foreground placeholder:text-muted-foreground focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/20 transition-all"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email" id="email" name="email" value={formData.email}
+                    onChange={handleChange} required
+                    className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg text-card-foreground placeholder:text-muted-foreground focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/20 transition-all"
+                    placeholder="john@example.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-muted-foreground mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel" id="phone" name="phone" value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg text-card-foreground placeholder:text-muted-foreground focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/20 transition-all"
+                    placeholder="03XX-XXXXXXX"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    id="message" name="message" value={formData.message}
+                    onChange={handleChange} required rows={5}
+                    className="w-full px-4 py-3 bg-muted/50 border border-input rounded-lg text-card-foreground placeholder:text-muted-foreground focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/20 transition-all resize-none"
+                    placeholder="Tell us about your shop and requirements..."
+                  />
+                </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-bg-secondary border border-bg-accent rounded-lg text-text-primary placeholder-text-muted focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/20 transition-all"
-                  placeholder="John Doe"
-                />
-              </div>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-6 text-lg bg-amber text-navy-dark font-bold hover:bg-amber/90 glow-amber disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : 'Send Message'}
+                </Button>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-bg-secondary border border-bg-accent rounded-lg text-text-primary placeholder-text-muted focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/20 transition-all"
-                  placeholder="john@example.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-text-secondary mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-bg-secondary border border-bg-accent rounded-lg text-text-primary placeholder-text-muted focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/20 transition-all"
-                  placeholder="03XX-XXXXXXX"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-text-secondary mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-bg-secondary border border-bg-accent rounded-lg text-text-primary placeholder-text-muted focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/20 transition-all resize-none"
-                  placeholder="Tell us about your shop and requirements..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-amber text-navy-dark font-bold rounded-lg hover:bg-amber-light transition-all duration-300 glow-amber disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                    Sending...
-                  </span>
-                ) : (
-                  'Send Message'
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-600">
+                    ✓ Message sent successfully! We'll get back to you soon.
+                  </div>
                 )}
-              </button>
-
-              {submitStatus === 'success' && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-600">
-                  ✓ Message sent successfully! We'll get back to you soon.
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
-                  ✗ Failed to send message. Please try again.
-                </div>
-              )}
-            </form>
-          </div>
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+                    ✗ Failed to send message. Please try again.
+                  </div>
+                )}
+              </form>
+            </CardContent>
+          </Card>
 
           {/* Contact Info */}
           <div ref={infoRef} className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-text-primary mb-6">
-                Get in Touch
-              </h3>
+              <h3 className="text-2xl font-bold text-text-primary mb-6">Get in Touch</h3>
               <p className="text-text-secondary leading-relaxed mb-8">
                 Visit us, give us a call, or send an email. We're here to help
                 you transform your mobile shop with the best POS solution.
               </p>
             </div>
 
-            {/* Contact Details */}
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-amber/10 rounded-lg text-amber">
@@ -216,8 +174,7 @@ export default function ContactSection() {
                 <div>
                   <h4 className="text-text-primary font-semibold mb-1">Location</h4>
                   <p className="text-text-secondary">
-                    Main PWD Rd, PWD Housing Society Sector A,
-                    <br />
+                    Main PWD Rd, PWD Housing Society Sector A,<br />
                     PWD Society, Islamabad, Punjab 45700, Pakistan
                   </p>
                 </div>
@@ -249,11 +206,9 @@ export default function ContactSection() {
             </div>
 
             {/* Map Placeholder */}
-            <div className="mt-8 p-1 bg-bg-secondary rounded-2xl">
-              <div className="w-full h-64 bg-bg-accent rounded-xl flex items-center justify-center">
-                <p className="text-text-muted text-sm">
-                  📍 Map Integration Placeholder
-                </p>
+            <div className="mt-8 p-1 bg-muted/50 rounded-2xl">
+              <div className="w-full h-64 bg-muted rounded-xl flex items-center justify-center">
+                <p className="text-muted-foreground text-sm">📍 Map Integration Placeholder</p>
               </div>
             </div>
           </div>
