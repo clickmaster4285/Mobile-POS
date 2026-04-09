@@ -16,9 +16,10 @@ export default function ScrollAnimationSection() {
       <ScrollAnimation
         totalFrames={454}
         framesPath="/frames/"
-        framePattern="ezgif-frame-{index}.jpg"
+        framePattern="ezgif-frame-{index}.webp"
         framePadding={3}
         scrollHeight={300}
+        minFramesToStart={100}
         aspectRatio={16 / 9}
         parallaxSpeeds={{ background: 0.3, foreground: 1.5 }}
         textOverlays={[
