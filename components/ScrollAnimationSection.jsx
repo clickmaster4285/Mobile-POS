@@ -14,7 +14,7 @@ export default function ScrollAnimationSection() {
   return (
     <section className="relative">
       <ScrollAnimation
-        totalFrames={328}
+        totalFrames={454}
         framesPath="/frames/"
         framePattern="ezgif-frame-{index}.jpg"
         framePadding={3}
