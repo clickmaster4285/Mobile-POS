@@ -147,7 +147,7 @@ export default function HeroSection() {
             </a>
           </Button>
 
-          <Button asChild variant="outline" size="lg" className="px-8 py-6 text-lg border-white/20 text-white hover:border-amber/50 hover:bg-white/10">
+          <Button asChild variant="outline" size="lg" className="px-8 py-6 text-lg border-white/20 hover:border-amber/50 hover:bg-white/10">
             <a href="#features">Book a Demo</a>
           </Button>
         </div>
