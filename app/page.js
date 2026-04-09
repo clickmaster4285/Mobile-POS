@@ -36,32 +36,50 @@ export default function Home() {
       {/* Navbar */}
       <Navbar />
 
-      {/* Hero Section */}
-      <HeroSection />
+      {/* Hero Section - Dark Theme */}
+      <div data-nav-theme="dark">
+        <HeroSection />
+      </div>
 
-      {/* Trust Bar Section */}
-      <TrustBarSection />
+      {/* Trust Bar Section - Light Theme */}
+      <div data-nav-theme="light">
+        <TrustBarSection />
+      </div>
 
-      {/* Features Section */}
-      <FeaturesSection />
+      {/* Features Section - Light Theme */}
+      <div data-nav-theme="light">
+        <FeaturesSection />
+      </div>
 
-      {/* Scroll Animation Section - Your Custom Animation */}
-      <ScrollAnimationSection />
+      {/* Scroll Animation Section - Dark Theme */}
+      <div data-nav-theme="dark">
+        <ScrollAnimationSection />
+      </div>
 
-      {/* About Section */}
-      <AboutSection />
+      {/* About Section - Light Theme */}
+      <div data-nav-theme="light">
+        <AboutSection />
+      </div>
 
-      {/* Reviews Section */}
-      <ReviewsSection />
+      {/* Reviews Section - Light Theme */}
+      <div data-nav-theme="light">
+        <ReviewsSection />
+      </div>
 
-      {/* CTA Section */}
-      <CTASection />
+      {/* CTA Section - Light Theme */}
+      <div data-nav-theme="light">
+        <CTASection />
+      </div>
 
-      {/* FAQ Section */}
-      <FAQSection />
+      {/* FAQ Section - Light Theme */}
+      <div data-nav-theme="light">
+        <FAQSection />
+      </div>
 
-      {/* Contact Section */}
-      <ContactSection />
+      {/* Contact Section - Light Theme */}
+      <div data-nav-theme="light">
+        <ContactSection />
+      </div>
 
       {/* Footer */}
       <Footer />
