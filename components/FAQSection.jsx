@@ -80,7 +80,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
         <span className="text-lg font-semibold text-card-foreground pr-4 text-left">
           {faq.question}
         </span>
-        <div className={`w-6 h-6 text-amber flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+        <div className={`w-6 h-6 text-amber hrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
           <Icon name="chevronDown" />
         </div>
       </button>

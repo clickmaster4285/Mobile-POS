@@ -62,12 +62,12 @@ export default function HeroSection() {
               loading={index === 0 ? 'eager' : 'lazy'}
             />
             {/* Dark overlay for readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/70" />
+            <div className="absolute inset-0 bg-linear-to-b from-slate-900/60 via-slate-900/40 to-slate-900/70" />
           </div>
         ))}
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/80 via-navy/60 to-amber-dark/30" />
+        <div className="absolute inset-0 bg-linear-to-br from-navy-dark/80 via-navy/60 to-amber-dark/30" />
       </div>
 
       {/* Slide Indicators */}

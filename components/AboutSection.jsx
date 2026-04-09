@@ -82,7 +82,7 @@ export default function AboutSection() {
         </div>
 
         <div ref={timelineRef} className="relative">
-          <div className="timeline-line absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber to-amber-dark rounded-full transform -translate-x-1/2 origin-top" />
+          <div className="timeline-line absolute left-1/2 top-0 bottom-0 w-1 bg-linear-to-b from-amber to-amber-dark rounded-full transform -translate-x-1/2 origin-top" />
 
           {milestones.map((milestone, index) => (
             <div

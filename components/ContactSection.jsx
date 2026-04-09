@@ -54,11 +54,11 @@ export default function ContactSection() {
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
         setSubmitStatus('error');
-        console.error('API Error:', result.message);
+        // console.error('API Error:', result.message);
       }
     } catch (error) {
       setSubmitStatus('error');
-      console.error('Submission error:', error);
+      // console.error('Submission error:', error);
     } finally {
       setIsSubmitting(false);
     }

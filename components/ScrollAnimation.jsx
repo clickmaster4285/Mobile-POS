@@ -159,7 +159,7 @@ export default function ScrollAnimation({
     offscreenCanvasRef.current.height = rect.height;
 
     if (debug) {
-      console.log(`Canvas setup: ${rect.width}x${rect.height} @ ${dpr}x DPR`);
+      // console.log(`Canvas setup: ${rect.width}x${rect.height} @ ${dpr}x DPR`);
     }
   }, [debug]);
 
@@ -290,7 +290,7 @@ export default function ScrollAnimation({
     if (onLoadComplete) onLoadComplete();
 
     if (debug) {
-      console.log(`Preloaded ${frames.length} frames`);
+      // console.log(`Preloaded ${frames.length} frames`);
     }
   }, [frameUrls, totalFrames, onLoadComplete, debug]);
 

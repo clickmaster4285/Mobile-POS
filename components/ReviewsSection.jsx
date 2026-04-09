@@ -91,7 +91,7 @@ export default function ReviewsSection() {
         </div>
 
         <div ref={carouselRef} className="relative">
-          <div className="min-h-[300px] flex items-center justify-center">
+          <div className="min-h-75 flex items-center justify-center">
             <Card className="text-center max-w-3xl mx-auto p-10 glow-card border-0 relative">
               {/* Quote Mark */}
               <div className="absolute -top-4 left-8 text-6xl text-amber/20 font-serif leading-none">"</div>

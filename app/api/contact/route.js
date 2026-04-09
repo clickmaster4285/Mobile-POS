@@ -418,7 +418,6 @@ export async function POST(req) {
       const { default: nodemailer } = await import('nodemailer');
 
       const body = await req.json();
-      console.log('Received contact form submission:', body);
 
       const { name, email, message, company, phone, services, budget } = body;
 
@@ -493,9 +492,6 @@ export async function POST(req) {
          transporter.sendMail(userMailOptions)
       ]);
 
-      console.log('Admin email sent:', adminInfo.messageId);
-      console.log('Auto-reply sent:', userInfo.messageId);
-
       return NextResponse.json(
          {
             message: 'Email sent successfully',
@@ -505,7 +501,7 @@ export async function POST(req) {
       );
 
    } catch (error) {
-      console.error('Error sending email:', error);
+      // console.error('Error sending email:', error);
 
       let errorMessage = 'Failed to send message';
       if (error.code === 'EAUTH') {

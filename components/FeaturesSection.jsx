@@ -159,7 +159,7 @@ export default function FeaturesSection() {
             >
               {/* Clip-Path Card Background */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${feature.color} rounded-2xl transition-all duration-700 group-hover:scale-[1.02]`}
+                className={`absolute inset-0 bg-linear-to-br ${feature.color} rounded-2xl transition-all duration-700 group-hover:scale-[1.02]`}
                 style={{
                   clipPath: 'polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px))',
                 }}
@@ -170,21 +170,21 @@ export default function FeaturesSection() {
               <div className={`absolute bottom-3 right-3 w-8 h-8 border-r-2 border-b-2 ${feature.borderColor} rounded-br-lg opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
 
               {/* Diagonal Gradient Line */}
-              <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
+              <div className={`absolute top-0 right-0 w-24 h-24 bg-linear-to-bl ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
                 style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
               />
 
               {/* Card Content */}
               <div className="relative z-10 p-8">
                 {/* Icon Container with Hexagon Clip */}
-                <div className={`w-16 h-16 mb-6 p-3 rounded-xl bg-gradient-to-br ${feature.iconBg} transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg overflow-hidden`}>
+                <div className={`w-16 h-16 mb-6 p-3 rounded-xl bg-linear-to-br ${feature.iconBg} transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg overflow-hidden`}>
                   <div className="w-full h-full text-amber">
                     <Icon name={feature.icon} />
                   </div>
                 </div>
 
                 {/* Number Badge */}
-                <div className={`absolute top-6 right-6 w-8 h-8 flex items-center justify-center text-xs font-bold bg-gradient-to-br ${feature.color} rounded-lg ${feature.borderColor} border text-text-muted`}>
+                <div className={`absolute top-6 right-6 w-8 h-8 flex items-center justify-center text-xs font-bold bg-linear-to-br ${feature.color} rounded-lg ${feature.borderColor} border text-text-muted`}>
                   {String(index + 1).padStart(2, '0')}
                 </div>
 
@@ -200,7 +200,7 @@ export default function FeaturesSection() {
 
                 {/* Bottom Accent Line */}
                 <div className="mt-6 flex items-center gap-3">
-                  <div className={`h-0.5 w-8 bg-gradient-to-r ${feature.color.split(' ')[0].replace('from-', 'from-').replace('/20', '')} to-transparent rounded-full group-hover:w-full transition-all duration-700`} />
+                  <div className={`h-0.5 w-8 bg-linear-to-r ${feature.color.split(' ')[0].replace('from-', 'from-').replace('/20', '')} to-transparent rounded-full group-hover:w-full transition-all duration-700`} />
                   <svg className="w-4 h-4 text-amber opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>

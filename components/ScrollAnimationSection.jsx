@@ -61,12 +61,9 @@ export default function ScrollAnimationSection() {
             className: '-translate-x-1/2 text-center whitespace-nowrap',
           },
         ]}
-        onLoadComplete={() => {
-          console.log('Frames loaded successfully');
-        }}
+        onLoadComplete={() => { }}
         onScrollProgress={(progress) => {
           // Optional: track scroll progress
-          // console.log('Scroll progress:', progress);
         }}
       />
     </section>

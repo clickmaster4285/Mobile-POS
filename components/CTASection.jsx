@@ -28,7 +28,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 px-4 overflow-hidden bg-gradient-to-br from-amber/5 via-blue-50 to-amber/10"
+      className="relative py-32 px-4 overflow-hidden bg-linear-to-br from-amber/5 via-blue-50 to-amber/10"
     >
       <BackgroundDecoration gradients floating variant="warm" opacity={0.6} />
 
